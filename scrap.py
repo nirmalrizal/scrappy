@@ -8,6 +8,7 @@ website_url = "https://baahrakhari.com/news-details/169935/2018-12-19"
 DEFAULT_ENCODING = "utf-8"
 
 # Removes spaces between lines and text other that devnagari
+# It checks only the first letter of the sentence if it is devnagari, this can be fixed
 def removeUnwatedData(text):
     return text.strip() != "" and 'DEVANAGARI' in unicodedata.name(unicode(text.strip(), 'utf-8')[0])
 
@@ -18,7 +19,7 @@ def removeExtraSpace(text):
 # Make request to the website
 site_resp = requests.get(website_url)
 
-# Change encoding of website to UTF-8
+# Change encoding of website to UTF-8 ( Life saving trick )
 site_resp.encoding = DEFAULT_ENCODING
 html_doc = site_resp.text
 soup = BeautifulSoup(html_doc, 'html.parser')
