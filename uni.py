@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import unicodedata
+import os
+
+script_dir = os.path.dirname(__file__)
 
 text = "nirmal   काठमाडौं । शरद भेषावकर rijal nirmal र प्रदीप                            ऐरीको अर्धशतकीय    (current)"
 
@@ -20,9 +23,15 @@ oneLineText = ''.join(allTextList).strip()
 
 finalTextArr = oneLineText.split('।')
 finalTextArr = map(lambda x : x.strip(), finalTextArr)
-finalText = " ।\n".join(finalTextArr) + " ।"
+finalText = "Sentences,\n" + " ।,\n".join(finalTextArr) + " ।"
 
-file = open('news.txt', 'w')
+# Check and make path for the file
+file_path = os.path.join(script_dir, "data/test/test.csv")
+if not os.path.exists(os.path.dirname(file_path)):
+        os.makedirs(os.path.dirname(file_path))
+
+# Save scraped data on some file
+file = open(file_path, 'w')
 file.write(finalText)
 file.close()
     
