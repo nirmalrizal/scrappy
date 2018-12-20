@@ -2,7 +2,7 @@
 
 import unicodedata
 
-text = "nirmal   काठमाडौं । शरद भेषावकर rijal र प्रदीप       ऐरीको अर्धशतकीय    (current)"
+text = "nirmal   काठमाडौं । शरद भेषावकर rijal nirmal र प्रदीप                            ऐरीको अर्धशतकीय    (current)"
 
 uni_text = unicode(text.strip(), 'utf-8')
 
@@ -13,8 +13,7 @@ for i in range(wordlength):
     nextWord = ""
     if(i+1 != wordlength):
             nextWord = uni_text[i+1]
-    print '<==== ' + singleWord.encode('utf-8') + '<====>' + nextWord.encode('utf-8') + ' ====>'
-    if 'DEVANAGARI' in unicodedata.name(singleWord) or ('SPACE' in unicodedata.name(singleWord) and 'SPACE' not in unicodedata.name(nextWord)):
+    if 'DEVANAGARI' in unicodedata.name(singleWord) or ('SPACE' in unicodedata.name(singleWord) and 'SPACE' not in unicodedata.name(nextWord) and 'DEVANAGARI' in unicodedata.name(nextWord)):
         allTextList.append(singleWord.encode('utf-8'))
 
 oneLineText = ''.join(allTextList).strip()

@@ -35,7 +35,7 @@ for i in range(wordlength):
     nextWord = ""
     if(i+1 != wordlength):
             nextWord = uni_text[i+1]
-    if 'DEVANAGARI' in unicodedata.name(singleWord) or ('SPACE' in unicodedata.name(singleWord) and 'SPACE' not in unicodedata.name(nextWord)):
+    if 'DEVANAGARI' in unicodedata.name(singleWord) or ('SPACE' in unicodedata.name(singleWord) and 'SPACE' not in unicodedata.name(nextWord) and 'DEVANAGARI' in unicodedata.name(nextWord)):
         allTextList.append(singleWord.encode(DEFAULT_ENCODING))
 
 oneLineText = ''.join(allTextList).strip()
