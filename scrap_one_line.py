@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import requests
 import unicodedata
 
-website_url = "http://www.imnepal.com/quotes-nepali-language/"
+website_url = "https://www.onlinekhabar.com/2018/12/728298"
 DEFAULT_ENCODING = "utf-8"
 
 # Removes spaces on front and back of the text on each line 
@@ -20,7 +20,7 @@ html_doc = site_resp.text
 soup = BeautifulSoup(html_doc, 'html.parser')
 
 body_text = soup.body.get_text().encode(DEFAULT_ENCODING)
-text_list = body_text.splitlines()
+text_list = map(removeExtraSpace, body_text.splitlines())
 
     
 # # Joins items of the list with a line break
