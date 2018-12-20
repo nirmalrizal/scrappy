@@ -2,16 +2,29 @@
 
 import unicodedata
 
-name = "गृह पृष्ठ पृष्ठ"
-# text_list = name.split(" ")
-# for t in text_list:
-#     tx = list(t)
-#     for b in tx:
-#         print b.encode('utf-8')
-#         uni_text = unicode(b, 'utf-8')
-#         print uni_text.encode('utf-8')
-    # print unicodedata.name(uni_text)
+text = "nirmal   काठमाडौं । शरद भेषावकर rijal र प्रदीप       ऐरीको अर्धशतकीय    (current)"
 
-uni_text = unicode(name, 'utf-8')
-print unicodedata.name(uni_text[0])
+uni_text = unicode(text.strip(), 'utf-8')
+
+wordlength = len(uni_text)
+allTextList = []
+for i in range(wordlength):
+    singleWord = uni_text[i]
+    nextWord = ""
+    if(i+1 != wordlength):
+            nextWord = uni_text[i+1]
+    print '<==== ' + singleWord.encode('utf-8') + '<====>' + nextWord.encode('utf-8') + ' ====>'
+    if 'DEVANAGARI' in unicodedata.name(singleWord) or ('SPACE' in unicodedata.name(singleWord) and 'SPACE' not in unicodedata.name(nextWord)):
+        allTextList.append(singleWord.encode('utf-8'))
+
+oneLineText = ''.join(allTextList).strip()
+
+finalTextArr = oneLineText.split('।')
+finalTextArr = map(lambda x : x.strip(), finalTextArr)
+finalText = " ।\n".join(finalTextArr) + " ।"
+
+file = open('news.txt', 'w')
+file.write(finalText)
+file.close()
     
+
